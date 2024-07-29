@@ -10,6 +10,7 @@ import (
 	"math/rand"
 	"os"
 	"os/signal"
+	"strconv"
 	"strings"
 	"sync"
 	"sync/atomic"
@@ -52,7 +53,12 @@ func (h *Handler) Spam(
 	createAccount func() (*PrivateKey, error),
 	lookupBalance func(int, string) (uint64, error),
 	getParser func(context.Context, ids.ID) (chain.Parser, error),
+	createAsset func(string, string) []chain.Action,
+	createLimitOrder func(uint64, bool, ids.ID, ids.ID) []chain.Action,
+	mintAsset func(codec.Address, ids.ID) []chain.Action,
+	createSeat func(ids.ID, ids.ID) []chain.Action,
 	getTransfer func(codec.Address, uint64) []chain.Action,
+	createOrderbook func(ids.ID, ids.ID) []chain.Action,
 	submitDummy func(*rpc.JSONRPCClient, *PrivateKey) func(context.Context, uint64) error,
 ) error {
 	ctx := context.Background()
@@ -77,24 +83,19 @@ func (h *Handler) Spam(
 	if err != nil {
 		return err
 	}
-	balances := make([]uint64, len(keys))
+	//balances := make([]uint64, len(keys))
 	if err := createClient(uris[0], networkID, chainID); err != nil {
 		return err
 	}
-	for i := 0; i < len(keys); i++ {
-		address := h.c.Address(keys[i].Address)
-		balance, err := lookupBalance(i, address)
-		if err != nil {
-			return err
-		}
-		balances[i] = balance
-	}
+
 	keyIndex, err := h.PromptChoice("select root key", len(keys))
 	if err != nil {
 		return err
 	}
 	key := keys[keyIndex]
-	balance := balances[keyIndex]
+	address := h.c.Address(keys[keyIndex].Address)
+	balance, _ := lookupBalance(keyIndex, address)
+
 	factory, err := getFactory(key)
 	if err != nil {
 		return err
@@ -110,7 +111,9 @@ func (h *Handler) Spam(
 	if err != nil {
 		return err
 	}
-	actions := getTransfer(keys[0].Address, 0)
+
+	actions := getTransfer(key.Address, 0)
+
 	maxUnits, err := chain.EstimateUnits(parser.Rules(time.Now().UnixMilli()), actions, factory)
 	if err != nil {
 		return err
@@ -141,7 +144,7 @@ func (h *Handler) Spam(
 		feePerTx = *maxFee
 		utils.Outf("{{cyan}}overriding max fee:{{/}} %d\n", feePerTx)
 	}
-	witholding := feePerTx * uint64(numAccounts)
+	witholding := 100 * feePerTx * uint64(numAccounts)
 	if balance < witholding {
 		return fmt.Errorf("insufficient funds (have=%d need=%d)", balance, witholding)
 	}
@@ -152,43 +155,40 @@ func (h *Handler) Spam(
 		h.c.Symbol(),
 	)
 	accounts := make([]*PrivateKey, numAccounts)
+	//Twice as many assets as accounts, 1 account per orderbook
+	assets := make([]ids.ID, numAccounts*2)
+
 	dcli, err := rpc.NewWebSocketClient(uris[0], rpc.DefaultHandshakeTimeout, pubsub.MaxPendingMessages, pubsub.MaxReadMessageSize) // we write the max read
 	if err != nil {
 		return err
 	}
-	funds := map[codec.Address]uint64{}
-	var fundsL sync.Mutex
-	for i := 0; i < numAccounts; i++ {
-		// Create account
-		pk, err := createAccount()
-		if err != nil {
-			return err
-		}
-		accounts[i] = pk
 
-		// Send funds
-		_, tx, err := cli.GenerateTransactionManual(parser, getTransfer(pk.Address, distAmount), factory, feePerTx)
-		if err != nil {
-			return err
-		}
-		if err := dcli.RegisterTx(tx); err != nil {
-			return fmt.Errorf("%w: failed to register tx", err)
-		}
-		funds[pk.Address] = distAmount
+	shouldReturn, returnValue := distributeFunds(ctx, numAccounts, createAccount, accounts, getTransfer, distAmount, cli, parser, factory, feePerTx, dcli)
+	if shouldReturn {
+		return returnValue
 	}
-	for i := 0; i < numAccounts; i++ {
-		_, dErr, result, err := dcli.ListenTx(ctx)
-		if err != nil {
-			return err
-		}
-		if dErr != nil {
-			return dErr
-		}
-		if !result.Success {
-			// Should never happen
-			return fmt.Errorf("%w: %s", ErrTxFailed, result.Error)
-		}
+
+	//Create assets
+	shouldReturn3, returnValue3 := createAssets(ctx, numAccounts, createAsset, cli, parser, factory, feePerTx, dcli, assets)
+	if shouldReturn3 {
+		return returnValue3
 	}
+
+	shouldReturn1, returnValue1 := mintAssets(assets, ctx, numAccounts, cli, parser, mintAsset, accounts, factory, feePerTx, dcli)
+	if shouldReturn1 {
+		return returnValue1
+	}
+
+	shouldReturn4, returnValue4 := createOrderbooks(ctx, numAccounts, cli, parser, createOrderbook, assets, factory, feePerTx, dcli)
+	if shouldReturn4 {
+		return returnValue4
+	}
+
+	shouldReturn2, returnValue2 := createSeats(assets, ctx, numAccounts, getFactory, accounts, cli, parser, createSeat, feePerTx, dcli)
+	if shouldReturn2 {
+		return returnValue2
+	}
+
 	var recipientFunc func() (*PrivateKey, error)
 	if randomRecipient {
 		recipientFunc = createAccount
@@ -264,17 +264,11 @@ func (h *Handler) Spam(
 
 			issuerIndex, issuer := getRandomIssuer(clients)
 			factory, err := getFactory(accounts[i])
+
 			if err != nil {
 				return err
 			}
-			fundsL.Lock()
-			balance := funds[accounts[i].Address]
-			fundsL.Unlock()
-			defer func() {
-				fundsL.Lock()
-				funds[accounts[i].Address] = balance
-				fundsL.Unlock()
-			}()
+
 			ut := time.Now().Unix()
 			for {
 				select {
@@ -307,7 +301,7 @@ func (h *Handler) Spam(
 						}
 						v := selected[recipient] + 1
 						selected[recipient] = v
-						actions := getTransfer(recipient, uint64(v))
+						// actions := getTransfer(recipient, uint64(v))
 						fee, err := fees.MulSum(unitPrices, maxUnits)
 						if err != nil {
 							utils.Outf("{{orange}}failed to estimate max fee:{{/}} %v\n", err)
@@ -316,7 +310,11 @@ func (h *Handler) Spam(
 						if maxFee != nil {
 							fee = *maxFee
 						}
-						_, tx, err := issuer.c.GenerateTransactionManual(parser, actions, factory, fee, tm)
+						qt := uint64((1 + rand.Intn(50)) * 1e6)
+						side := rand.Intn(2) == 0
+
+						_, tx, err := issuer.c.GenerateTransactionManual(parser, createLimitOrder(qt, side, assets[i], assets[numAccounts+i]), factory, fee, tm)
+
 						if err != nil {
 							utils.Outf("{{orange}}failed to generate tx:{{/}} %v\n", err)
 							continue
@@ -344,9 +342,11 @@ func (h *Handler) Spam(
 							}
 							continue
 						}
-						balance -= (fee + uint64(v))
+						//balance -= (fee + uint64(v))
 						issuer.l.Lock()
 						issuer.outstandingTxs++
+						utils.Outf("{{green}}outstandingTxs:{{/}} %d\n", issuer.outstandingTxs)
+
 						issuer.l.Unlock()
 						inflight.Add(1)
 						sent.Add(1)
@@ -395,66 +395,182 @@ func (h *Handler) Spam(
 	issuerWg.Wait()
 	cancel()
 
-	// Return funds
-	unitPrices, err = cli.UnitPrices(ctx, false)
-	if err != nil {
-		return err
-	}
-	feePerTx, err = fees.MulSum(unitPrices, maxUnits)
-	if err != nil {
-		return err
-	}
-	if maxFee != nil {
-		feePerTx = *maxFee
-	}
-	utils.Outf("{{yellow}}returning funds to %s{{/}}\n", h.c.Address(key.Address))
-	var (
-		returnedBalance uint64
-		returnsSent     int
-	)
+	return nil
+}
+
+func createOrderbooks(ctx context.Context, numAccounts int, cli *rpc.JSONRPCClient, parser chain.Parser, createOrderbook func(ids.ID, ids.ID) []chain.Action, assets []ids.ID, factory chain.AuthFactory, feePerTx uint64, dcli *rpc.WebSocketClient) (bool, error) {
 	for i := 0; i < numAccounts; i++ {
-		balance := funds[accounts[i].Address]
-		if feePerTx > balance {
-			continue
-		}
-		returnsSent++
-		// Send funds
-		returnAmt := balance - feePerTx
-		f, err := getFactory(accounts[i])
+		_, tx, err := cli.GenerateTransactionManual(parser, createOrderbook(assets[i], assets[numAccounts+i]), factory, feePerTx)
 		if err != nil {
-			return err
-		}
-		_, tx, err := cli.GenerateTransactionManual(parser, getTransfer(key.Address, returnAmt), f, feePerTx)
-		if err != nil {
-			return err
-		}
-		if err != nil {
-			return err
+			return true, err
 		}
 		if err := dcli.RegisterTx(tx); err != nil {
-			return err
+			return true, fmt.Errorf("%w: failed to register tx", err)
 		}
-		returnedBalance += returnAmt
 	}
-	for i := 0; i < returnsSent; i++ {
+	for i := 0; i < numAccounts; i++ {
 		_, dErr, result, err := dcli.ListenTx(ctx)
 		if err != nil {
-			return err
+			return true, err
 		}
 		if dErr != nil {
-			return dErr
+			return true, dErr
 		}
 		if !result.Success {
-			// Should never happen
-			return fmt.Errorf("%w: %s", ErrTxFailed, result.Error)
+
+			return true, fmt.Errorf("%w: %s", ErrTxFailed, result.Error)
 		}
 	}
-	utils.Outf(
-		"{{yellow}}returned funds:{{/}} %s %s\n",
-		utils.FormatBalance(returnedBalance, h.c.Decimals()),
-		h.c.Symbol(),
-	)
-	return nil
+
+	utils.Outf("{{green}}OrderBook created\n")
+	time.Sleep(100 * time.Millisecond)
+
+	return false, nil
+}
+
+func createAssets(ctx context.Context, numAccounts int, createAsset func(string, string) []chain.Action, cli *rpc.JSONRPCClient, parser chain.Parser, factory chain.AuthFactory, feePerTx uint64, dcli *rpc.WebSocketClient, assets []ids.ID) (bool, error) {
+	for i := 0; i < numAccounts*2; i++ {
+		customString := generateCustomString()
+		actions := createAsset(customString, customString)
+		_, tx, err := cli.GenerateTransactionManual(parser, actions, factory, feePerTx)
+		if err != nil {
+			return true, err
+		}
+
+		if err := dcli.RegisterTx(tx); err != nil {
+			return true, fmt.Errorf("%w: failed to register tx", err)
+		}
+	}
+	for i := 0; i < numAccounts*2; i++ {
+		txId, dErr, result, err := dcli.ListenTx(ctx)
+		if err != nil {
+			return true, err
+		}
+		if dErr != nil {
+			return true, dErr
+		}
+		if !result.Success {
+			return true, fmt.Errorf("%w: %s", ErrTxFailed, result.Error)
+		}
+
+		assetID := chain.CreateActionID(txId, 0)
+		assets[i] = assetID
+		utils.Outf("{{green}}assetID:{{/}} %s\n", assets[i])
+
+	}
+	utils.Outf("{{green}}Assets created\n")
+	time.Sleep(100 * time.Millisecond)
+
+	return false, nil
+}
+
+func createSeats(assets []ids.ID, ctx context.Context, numAccounts int, getFactory func(*PrivateKey) (chain.AuthFactory, error), accounts []*PrivateKey, cli *rpc.JSONRPCClient, parser chain.Parser, createSeat func(ids.ID, ids.ID) []chain.Action, feePerTx uint64, dcli *rpc.WebSocketClient) (bool, error) {
+	for i := 0; i < numAccounts; i++ {
+		localFactory, err := getFactory(accounts[i])
+		if err != nil {
+			return true, err
+		}
+
+		_, tx, err := cli.GenerateTransactionManual(parser, createSeat(assets[i], assets[numAccounts+i]), localFactory, feePerTx)
+		if err != nil {
+			return true, err
+		}
+		if err := dcli.RegisterTx(tx); err != nil {
+			return true, fmt.Errorf("%w: failed to register tx", err)
+		}
+	}
+	for i := 0; i < numAccounts; i++ {
+		_, dErr, result, err := dcli.ListenTx(ctx)
+		if err != nil {
+			return true, err
+		}
+		if dErr != nil {
+			return true, dErr
+		}
+		if !result.Success {
+
+			return true, fmt.Errorf("%w: %s", ErrTxFailed, result.Error)
+		}
+	}
+	utils.Outf("{{green}}Seats created\n")
+	time.Sleep(100 * time.Millisecond)
+
+	return false, nil
+}
+
+func mintAssets(assets []ids.ID, ctx context.Context, numAccounts int, cli *rpc.JSONRPCClient, parser chain.Parser, mintAsset func(codec.Address, ids.ID) []chain.Action, accounts []*PrivateKey, factory chain.AuthFactory, feePerTx uint64, dcli *rpc.WebSocketClient) (bool, error) {
+	for j := 0; j < numAccounts*2; j++ {
+		for i := 0; i < numAccounts; i++ {
+			_, tx, err := cli.GenerateTransactionManual(parser, mintAsset(accounts[i].Address, assets[j]), factory, feePerTx)
+			if err != nil {
+				return true, err
+			}
+			if err := dcli.RegisterTx(tx); err != nil {
+				return true, fmt.Errorf("%w: failed to register tx", err)
+			}
+		}
+		for i := 0; i < numAccounts; i++ {
+			_, dErr, result, err := dcli.ListenTx(ctx)
+			if err != nil {
+				return true, err
+			}
+			if dErr != nil {
+				return true, dErr
+			}
+			if !result.Success {
+
+				return true, fmt.Errorf("%w: %s", ErrTxFailed, result.Error)
+			}
+		}
+	}
+
+	utils.Outf("{{green}}Assets minted\n")
+	time.Sleep(100 * time.Millisecond)
+
+	return false, nil
+}
+
+func distributeFunds(ctx context.Context, numAccounts int, createAccount func() (*PrivateKey, error), accounts []*PrivateKey, getTransfer func(codec.Address, uint64) []chain.Action, distAmount uint64, cli *rpc.JSONRPCClient, parser chain.Parser, factory chain.AuthFactory, feePerTx uint64, dcli *rpc.WebSocketClient) (bool, error) {
+	for i := 0; i < numAccounts; i++ {
+
+		pk, err := createAccount()
+		if err != nil {
+			return true, err
+		}
+		accounts[i] = pk
+
+		actions := getTransfer(pk.Address, distAmount)
+		_, tx, err := cli.GenerateTransactionManual(parser, actions, factory, feePerTx)
+		if err != nil {
+			return true, err
+		}
+
+		if err != nil {
+			return true, err
+		}
+		if err := dcli.RegisterTx(tx); err != nil {
+			return true, fmt.Errorf("%w: failed to register tx", err)
+		}
+
+	}
+	for i := 0; i < numAccounts; i++ {
+		_, dErr, result, err := dcli.ListenTx(ctx)
+		if err != nil {
+			return true, err
+		}
+		if dErr != nil {
+			return true, dErr
+		}
+		if !result.Success {
+
+			return true, fmt.Errorf("%w: %s", ErrTxFailed, result.Error)
+		}
+	}
+
+	utils.Outf("{{green}}Funds Distributed\n")
+	time.Sleep(100 * time.Millisecond)
+
+	return false, nil
 }
 
 type txIssuer struct {
@@ -553,3 +669,17 @@ func getRandomIssuer(issuers []*txIssuer) (int, *txIssuer) {
 	index := rand.Int() % len(issuers)
 	return index, issuers[index]
 }
+
+func randNumberString(n int) string {
+	rand := rand.Intn(999)
+	return strconv.Itoa(rand)
+}
+
+// generateCustomString generates a string that starts with "ASS" followed by three random numeric characters
+func generateCustomString() string {
+	prefix := "A_"    // Prefix string
+	suffixLength := 3 // Length of the random numeric suffix
+	randomSuffix := randNumberString(suffixLength)
+	return prefix + randomSuffix
+}
+
