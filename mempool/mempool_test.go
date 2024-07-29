@@ -11,8 +11,8 @@ import (
 	"github.com/stretchr/testify/require"
 	"go.uber.org/mock/gomock"
 
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/trace"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/trace"
 )
 
 var testSponsor = codec.CreateAddress(1, ids.GenerateTestID())

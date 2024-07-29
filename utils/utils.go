@@ -18,7 +18,7 @@ import (
 	"github.com/ava-labs/avalanchego/utils/perms"
 	"github.com/onsi/ginkgo/v2/formatter"
 
-	"github.com/ava-labs/hypersdk/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/consts"
 )
 
 func ToID(bytes []byte) ids.ID {

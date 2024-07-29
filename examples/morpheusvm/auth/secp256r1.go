@@ -6,12 +6,12 @@ package auth
 import (
 	"context"
 
-	"github.com/ava-labs/hypersdk/chain"
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/crypto"
-	"github.com/ava-labs/hypersdk/crypto/secp256r1"
-	"github.com/ava-labs/hypersdk/examples/morpheusvm/consts"
-	"github.com/ava-labs/hypersdk/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/crypto"
+	"github.com/hyperblaze-labs/hypersdk-spam/crypto/secp256r1"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/morpheusvm/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
 )
 
 var _ chain.Auth = (*SECP256R1)(nil)

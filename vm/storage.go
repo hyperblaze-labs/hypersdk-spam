@@ -16,8 +16,8 @@ import (
 	"github.com/ava-labs/avalanchego/snow/choices"
 	"go.uber.org/zap"
 
-	"github.com/ava-labs/hypersdk/chain"
-	"github.com/ava-labs/hypersdk/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/consts"
 )
 
 // compactionOffset is used to randomize the height that we compact
@@ -30,7 +30,7 @@ func init() {
 }
 
 const (
-	blockPrefix         = 0x0 // TODO: move to flat files (https://github.com/ava-labs/hypersdk/issues/553)
+	blockPrefix         = 0x0 // TODO: move to flat files (https://github.com/hyperblaze-labs/hypersdk-spam/issues/553)
 	blockIDHeightPrefix = 0x1 // ID -> Height
 	blockHeightIDPrefix = 0x2 // Height -> ID (don't always need full block from disk)
 )

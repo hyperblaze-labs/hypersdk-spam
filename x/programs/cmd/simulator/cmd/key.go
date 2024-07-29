@@ -12,9 +12,9 @@ import (
 	"go.uber.org/zap"
 
 	"github.com/ava-labs/avalanchego/utils/logging"
-	"github.com/ava-labs/hypersdk/crypto/ed25519"
-	"github.com/ava-labs/hypersdk/state"
-	"github.com/ava-labs/hypersdk/x/programs/cmd/simulator/vm/storage"
+	"github.com/hyperblaze-labs/hypersdk-spam/crypto/ed25519"
+	"github.com/hyperblaze-labs/hypersdk-spam/state"
+	"github.com/hyperblaze-labs/hypersdk-spam/x/programs/cmd/simulator/vm/storage"
 )
 
 var _ Cmd = (*keyCreateCmd)(nil)

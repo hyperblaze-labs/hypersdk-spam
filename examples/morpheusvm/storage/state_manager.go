@@ -6,9 +6,9 @@ package storage
 import (
 	"context"
 
-	"github.com/ava-labs/hypersdk/chain"
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/state"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/state"
 )
 
 var _ (chain.StateManager) = (*StateManager)(nil)

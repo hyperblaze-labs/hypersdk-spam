@@ -3,7 +3,7 @@
 
 package state
 
-import "github.com/ava-labs/hypersdk/keys"
+import "github.com/hyperblaze-labs/hypersdk-spam/keys"
 
 const (
 	Read     Permissions = 1

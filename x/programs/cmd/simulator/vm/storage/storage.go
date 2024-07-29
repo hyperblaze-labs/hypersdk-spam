@@ -11,12 +11,12 @@ import (
 	"github.com/ava-labs/avalanchego/database"
 	"github.com/ava-labs/avalanchego/ids"
 
-	"github.com/ava-labs/hypersdk/consts"
-	"github.com/ava-labs/hypersdk/crypto/ed25519"
-	"github.com/ava-labs/hypersdk/fees"
-	"github.com/ava-labs/hypersdk/state"
+	"github.com/hyperblaze-labs/hypersdk-spam/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/crypto/ed25519"
+	"github.com/hyperblaze-labs/hypersdk-spam/fees"
+	"github.com/hyperblaze-labs/hypersdk-spam/state"
 
-	"github.com/ava-labs/hypersdk/x/programs/examples/storage"
+	"github.com/hyperblaze-labs/hypersdk-spam/x/programs/examples/storage"
 )
 
 const (

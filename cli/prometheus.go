@@ -16,7 +16,7 @@ import (
 	"github.com/pkg/browser"
 	"gopkg.in/yaml.v2"
 
-	"github.com/ava-labs/hypersdk/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
 )
 
 const (

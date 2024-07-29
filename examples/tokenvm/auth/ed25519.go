@@ -6,11 +6,11 @@ package auth
 import (
 	"context"
 
-	"github.com/ava-labs/hypersdk/chain"
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/crypto"
-	"github.com/ava-labs/hypersdk/crypto/ed25519"
-	"github.com/ava-labs/hypersdk/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/crypto"
+	"github.com/hyperblaze-labs/hypersdk-spam/crypto/ed25519"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
 )
 
 var _ chain.Auth = (*ED25519)(nil)

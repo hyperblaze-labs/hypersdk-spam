@@ -10,17 +10,17 @@ import (
 	"github.com/ava-labs/avalanchego/ids"
 	"github.com/spf13/cobra"
 
-	"github.com/ava-labs/hypersdk/cli"
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/consts"
-	"github.com/ava-labs/hypersdk/crypto/ed25519"
-	"github.com/ava-labs/hypersdk/examples/tokenvm/auth"
-	"github.com/ava-labs/hypersdk/examples/tokenvm/challenge"
-	"github.com/ava-labs/hypersdk/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/cli"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/crypto/ed25519"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/auth"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/challenge"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
 
-	frpc "github.com/ava-labs/hypersdk/examples/tokenvm/cmd/token-faucet/rpc"
-	tconsts "github.com/ava-labs/hypersdk/examples/tokenvm/consts"
-	trpc "github.com/ava-labs/hypersdk/examples/tokenvm/rpc"
+	frpc "github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/cmd/token-faucet/rpc"
+	tconsts "github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/consts"
+	trpc "github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/rpc"
 )
 
 var keyCmd = &cobra.Command{

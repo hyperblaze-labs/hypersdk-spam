@@ -6,7 +6,7 @@ package chain
 import (
 	"time"
 
-	"github.com/ava-labs/hypersdk/keys"
+	"github.com/hyperblaze-labs/hypersdk-spam/keys"
 )
 
 const (

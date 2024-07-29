@@ -15,11 +15,11 @@ import (
 	"github.com/ava-labs/avalanchego/utils/set"
 	"github.com/ava-labs/avalanchego/x/merkledb"
 
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/executor"
-	"github.com/ava-labs/hypersdk/fees"
-	"github.com/ava-labs/hypersdk/state"
-	"github.com/ava-labs/hypersdk/workers"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/executor"
+	"github.com/hyperblaze-labs/hypersdk-spam/fees"
+	"github.com/hyperblaze-labs/hypersdk-spam/state"
+	"github.com/hyperblaze-labs/hypersdk-spam/workers"
 )
 
 type (

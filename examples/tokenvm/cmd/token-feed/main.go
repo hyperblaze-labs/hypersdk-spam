@@ -16,12 +16,12 @@ import (
 	"github.com/ava-labs/avalanchego/utils/logging"
 	"go.uber.org/zap"
 
-	"github.com/ava-labs/hypersdk/examples/tokenvm/cmd/token-feed/config"
-	"github.com/ava-labs/hypersdk/examples/tokenvm/cmd/token-feed/manager"
-	"github.com/ava-labs/hypersdk/server"
-	"github.com/ava-labs/hypersdk/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/cmd/token-feed/config"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/cmd/token-feed/manager"
+	"github.com/hyperblaze-labs/hypersdk-spam/server"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
 
-	frpc "github.com/ava-labs/hypersdk/examples/tokenvm/cmd/token-feed/rpc"
+	frpc "github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/cmd/token-feed/rpc"
 )
 
 var (

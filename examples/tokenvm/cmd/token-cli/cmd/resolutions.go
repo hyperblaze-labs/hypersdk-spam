@@ -8,15 +8,15 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/ava-labs/hypersdk/chain"
-	"github.com/ava-labs/hypersdk/cli"
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/examples/tokenvm/actions"
-	"github.com/ava-labs/hypersdk/rpc"
-	"github.com/ava-labs/hypersdk/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/cli"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/actions"
+	"github.com/hyperblaze-labs/hypersdk-spam/rpc"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
 
-	tconsts "github.com/ava-labs/hypersdk/examples/tokenvm/consts"
-	trpc "github.com/ava-labs/hypersdk/examples/tokenvm/rpc"
+	tconsts "github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/consts"
+	trpc "github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/rpc"
 )
 
 // sendAndWait may not be used concurrently

@@ -9,8 +9,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/ava-labs/hypersdk/cli"
-	"github.com/ava-labs/hypersdk/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/cli"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
 )
 
 const (

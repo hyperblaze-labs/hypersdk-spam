@@ -11,15 +11,15 @@ import (
 
 	"github.com/ava-labs/avalanchego/ids"
 
-	_ "github.com/ava-labs/hypersdk/examples/tokenvm/registry" // ensure registry populated
+	_ "github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/registry" // ensure registry populated
 
-	"github.com/ava-labs/hypersdk/chain"
-	"github.com/ava-labs/hypersdk/examples/tokenvm/consts"
-	"github.com/ava-labs/hypersdk/examples/tokenvm/genesis"
-	"github.com/ava-labs/hypersdk/examples/tokenvm/orderbook"
-	"github.com/ava-labs/hypersdk/requester"
-	"github.com/ava-labs/hypersdk/rpc"
-	"github.com/ava-labs/hypersdk/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/genesis"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/orderbook"
+	"github.com/hyperblaze-labs/hypersdk-spam/requester"
+	"github.com/hyperblaze-labs/hypersdk-spam/rpc"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
 )
 
 type JSONRPCClient struct {

@@ -18,17 +18,17 @@ import (
 	"github.com/fatih/color"
 	"github.com/onsi/gomega"
 
-	"github.com/ava-labs/hypersdk/chain"
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/crypto/ed25519"
-	"github.com/ava-labs/hypersdk/examples/morpheusvm/actions"
-	"github.com/ava-labs/hypersdk/examples/morpheusvm/auth"
-	"github.com/ava-labs/hypersdk/examples/morpheusvm/consts"
-	"github.com/ava-labs/hypersdk/rpc"
-	"github.com/ava-labs/hypersdk/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/crypto/ed25519"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/morpheusvm/actions"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/morpheusvm/auth"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/morpheusvm/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/rpc"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
 
 	runner_sdk "github.com/ava-labs/avalanche-network-runner/client"
-	lrpc "github.com/ava-labs/hypersdk/examples/morpheusvm/rpc"
+	lrpc "github.com/hyperblaze-labs/hypersdk-spam/examples/morpheusvm/rpc"
 	ginkgo "github.com/onsi/ginkgo/v2"
 )
 

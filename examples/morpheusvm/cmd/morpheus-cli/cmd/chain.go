@@ -9,9 +9,9 @@ import (
 	"github.com/ava-labs/avalanchego/ids"
 	"github.com/spf13/cobra"
 
-	"github.com/ava-labs/hypersdk/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
 
-	brpc "github.com/ava-labs/hypersdk/examples/morpheusvm/rpc"
+	brpc "github.com/hyperblaze-labs/hypersdk-spam/examples/morpheusvm/rpc"
 )
 
 var chainCmd = &cobra.Command{

@@ -10,7 +10,7 @@ import (
 	"github.com/ava-labs/avalanchego/snow/engine/snowman/block"
 	"go.uber.org/zap"
 
-	"github.com/ava-labs/hypersdk/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
 )
 
 // GetLastStateSummary returns the latest state summary.

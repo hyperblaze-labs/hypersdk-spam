@@ -13,13 +13,13 @@ import (
 	"github.com/ava-labs/avalanchego/database"
 	"github.com/ava-labs/avalanchego/ids"
 
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/consts"
-	"github.com/ava-labs/hypersdk/crypto/ed25519"
-	"github.com/ava-labs/hypersdk/pebble"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/crypto/ed25519"
+	"github.com/hyperblaze-labs/hypersdk-spam/pebble"
 
-	tconsts "github.com/ava-labs/hypersdk/examples/tokenvm/consts"
-	hutils "github.com/ava-labs/hypersdk/utils"
+	tconsts "github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/consts"
+	hutils "github.com/hyperblaze-labs/hypersdk-spam/utils"
 )
 
 const (

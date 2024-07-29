@@ -25,19 +25,19 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"go.uber.org/zap"
 
-	"github.com/ava-labs/hypersdk/builder"
-	"github.com/ava-labs/hypersdk/cache"
-	"github.com/ava-labs/hypersdk/chain"
-	"github.com/ava-labs/hypersdk/emap"
-	"github.com/ava-labs/hypersdk/fees"
-	"github.com/ava-labs/hypersdk/gossiper"
-	"github.com/ava-labs/hypersdk/mempool"
-	"github.com/ava-labs/hypersdk/network"
-	"github.com/ava-labs/hypersdk/rpc"
-	"github.com/ava-labs/hypersdk/state"
-	"github.com/ava-labs/hypersdk/trace"
-	"github.com/ava-labs/hypersdk/utils"
-	"github.com/ava-labs/hypersdk/workers"
+	"github.com/hyperblaze-labs/hypersdk-spam/builder"
+	"github.com/hyperblaze-labs/hypersdk-spam/cache"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/emap"
+	"github.com/hyperblaze-labs/hypersdk-spam/fees"
+	"github.com/hyperblaze-labs/hypersdk-spam/gossiper"
+	"github.com/hyperblaze-labs/hypersdk-spam/mempool"
+	"github.com/hyperblaze-labs/hypersdk-spam/network"
+	"github.com/hyperblaze-labs/hypersdk-spam/rpc"
+	"github.com/hyperblaze-labs/hypersdk-spam/state"
+	"github.com/hyperblaze-labs/hypersdk-spam/trace"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/workers"
 
 	avametrics "github.com/ava-labs/avalanchego/api/metrics"
 	avacache "github.com/ava-labs/avalanchego/cache"
@@ -492,7 +492,7 @@ func (vm *VM) SetState(_ context.Context, state snow.State) error {
 
 			// TODO: add a config to FATAL here if could not state sync (likely won't be
 			// able to recover in networks where no one has the full state, bypass
-			// still starts sync): https://github.com/ava-labs/hypersdk/issues/438
+			// still starts sync): https://github.com/hyperblaze-labs/hypersdk-spam/issues/438
 		}
 
 		// Backfill seen transactions, if any. This will exit as soon as we reach

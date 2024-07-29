@@ -8,9 +8,9 @@ import (
 
 	"github.com/ava-labs/avalanchego/ids"
 
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/rpc"
-	"github.com/ava-labs/hypersdk/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/rpc"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
 )
 
 func (h *Handler) SetKey(lookupBalance func(int, string, string, uint32, ids.ID) error) error {

@@ -15,9 +15,9 @@ import (
 	"github.com/ava-labs/avalanchego/x/merkledb"
 	"github.com/stretchr/testify/require"
 
-	"github.com/ava-labs/hypersdk/keys"
-	"github.com/ava-labs/hypersdk/state"
-	"github.com/ava-labs/hypersdk/trace"
+	"github.com/hyperblaze-labs/hypersdk-spam/keys"
+	"github.com/hyperblaze-labs/hypersdk-spam/state"
+	"github.com/hyperblaze-labs/hypersdk-spam/trace"
 )
 
 var (

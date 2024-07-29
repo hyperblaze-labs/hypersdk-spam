@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ava-labs/hypersdk/x/programs/cmd/simulator/cmd"
+	"github.com/hyperblaze-labs/hypersdk-spam/x/programs/cmd/simulator/cmd"
 )
 
 func main() {

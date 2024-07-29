@@ -6,8 +6,8 @@ package chain
 import (
 	"github.com/ava-labs/avalanchego/ids"
 
-	"github.com/ava-labs/hypersdk/consts"
-	"github.com/ava-labs/hypersdk/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
 )
 
 func CreateActionID(txID ids.ID, i uint8) ids.ID {

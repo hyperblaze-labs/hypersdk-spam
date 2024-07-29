@@ -11,11 +11,11 @@ import (
 	"github.com/ava-labs/avalanchego/utils/logging"
 	"go.uber.org/zap"
 
-	"github.com/ava-labs/hypersdk/chain"
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/consts"
-	"github.com/ava-labs/hypersdk/emap"
-	"github.com/ava-labs/hypersdk/pubsub"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/emap"
+	"github.com/hyperblaze-labs/hypersdk-spam/pubsub"
 )
 
 type WebSocketServer struct {

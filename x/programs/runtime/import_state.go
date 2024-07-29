@@ -10,7 +10,7 @@ import (
 	"github.com/ava-labs/avalanchego/database"
 	"github.com/near/borsh-go"
 
-	"github.com/ava-labs/hypersdk/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
 )
 
 const (

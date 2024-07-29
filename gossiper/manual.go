@@ -11,8 +11,8 @@ import (
 	"github.com/ava-labs/avalanchego/snow/engine/common"
 	"go.uber.org/zap"
 
-	"github.com/ava-labs/hypersdk/chain"
-	"github.com/ava-labs/hypersdk/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/consts"
 )
 
 var _ Gossiper = (*Manual)(nil)

@@ -13,12 +13,12 @@ import (
 	"github.com/ava-labs/avalanchego/utils/logging"
 	"github.com/ava-labs/avalanchego/utils/profiler"
 
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/config"
-	"github.com/ava-labs/hypersdk/examples/morpheusvm/consts"
-	"github.com/ava-labs/hypersdk/examples/morpheusvm/version"
-	"github.com/ava-labs/hypersdk/trace"
-	"github.com/ava-labs/hypersdk/vm"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/config"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/morpheusvm/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/morpheusvm/version"
+	"github.com/hyperblaze-labs/hypersdk-spam/trace"
+	"github.com/hyperblaze-labs/hypersdk-spam/vm"
 )
 
 var _ vm.Config = (*Config)(nil)

@@ -8,9 +8,9 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/ava-labs/hypersdk/chain"
-	"github.com/ava-labs/hypersdk/examples/morpheusvm/actions"
-	"github.com/ava-labs/hypersdk/examples/morpheusvm/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/morpheusvm/actions"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/morpheusvm/consts"
 )
 
 var actionCmd = &cobra.Command{

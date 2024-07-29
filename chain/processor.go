@@ -9,11 +9,11 @@ import (
 
 	"github.com/ava-labs/avalanchego/trace"
 
-	"github.com/ava-labs/hypersdk/executor"
-	"github.com/ava-labs/hypersdk/fees"
-	"github.com/ava-labs/hypersdk/fetcher"
-	"github.com/ava-labs/hypersdk/state"
-	"github.com/ava-labs/hypersdk/tstate"
+	"github.com/hyperblaze-labs/hypersdk-spam/executor"
+	"github.com/hyperblaze-labs/hypersdk-spam/fees"
+	"github.com/hyperblaze-labs/hypersdk-spam/fetcher"
+	"github.com/hyperblaze-labs/hypersdk-spam/state"
+	"github.com/hyperblaze-labs/hypersdk-spam/tstate"
 )
 
 type fetchData struct {

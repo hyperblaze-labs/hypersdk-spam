@@ -6,7 +6,7 @@ package cli
 import (
 	"github.com/ava-labs/avalanchego/database"
 
-	"github.com/ava-labs/hypersdk/pebble"
+	"github.com/hyperblaze-labs/hypersdk-spam/pebble"
 )
 
 type Handler struct {

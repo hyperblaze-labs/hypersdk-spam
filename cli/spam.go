@@ -20,13 +20,13 @@ import (
 	"github.com/ava-labs/avalanchego/ids"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/ava-labs/hypersdk/chain"
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/consts"
-	"github.com/ava-labs/hypersdk/fees"
-	"github.com/ava-labs/hypersdk/pubsub"
-	"github.com/ava-labs/hypersdk/rpc"
-	"github.com/ava-labs/hypersdk/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/fees"
+	"github.com/hyperblaze-labs/hypersdk-spam/pubsub"
+	"github.com/hyperblaze-labs/hypersdk-spam/rpc"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
 )
 
 const (
@@ -682,4 +682,3 @@ func generateCustomString() string {
 	randomSuffix := randNumberString(suffixLength)
 	return prefix + randomSuffix
 }
-

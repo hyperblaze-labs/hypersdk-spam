@@ -14,10 +14,10 @@ import (
 	"github.com/ava-labs/avalanchego/utils/logging"
 	"github.com/gorilla/websocket"
 
-	"github.com/ava-labs/hypersdk/chain"
-	"github.com/ava-labs/hypersdk/fees"
-	"github.com/ava-labs/hypersdk/pubsub"
-	"github.com/ava-labs/hypersdk/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/fees"
+	"github.com/hyperblaze-labs/hypersdk-spam/pubsub"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
 )
 
 type WebSocketClient struct {

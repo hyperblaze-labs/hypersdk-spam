@@ -8,7 +8,7 @@ import (
 
 	"github.com/ava-labs/avalanchego/ids"
 
-	"github.com/ava-labs/hypersdk/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
 )
 
 type Manager interface {

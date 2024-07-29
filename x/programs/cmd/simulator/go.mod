@@ -1,10 +1,10 @@
-module github.com/ava-labs/hypersdk/x/programs/cmd/simulator
+module github.com/hyperblaze-labs/hypersdk-spam/x/programs/cmd/simulator
 
 go 1.21
 
 require (
 	github.com/ava-labs/avalanchego v1.10.18
-	github.com/ava-labs/hypersdk v0.0.1
+	github.com/hyperblaze-labs/hypersdk-spam v0.0.1
 	github.com/near/borsh-go v0.3.1
 	github.com/prometheus/client_golang v1.16.0
 	github.com/stretchr/testify v1.8.4
@@ -84,4 +84,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/ava-labs/hypersdk => ../../../../
+replace github.com/hyperblaze-labs/hypersdk-spam => ../../../../

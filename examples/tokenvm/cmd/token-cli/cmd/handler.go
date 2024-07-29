@@ -8,17 +8,17 @@ import (
 
 	"github.com/ava-labs/avalanchego/ids"
 
-	"github.com/ava-labs/hypersdk/chain"
-	"github.com/ava-labs/hypersdk/cli"
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/crypto/ed25519"
-	"github.com/ava-labs/hypersdk/examples/tokenvm/auth"
-	"github.com/ava-labs/hypersdk/examples/tokenvm/consts"
-	"github.com/ava-labs/hypersdk/pubsub"
-	"github.com/ava-labs/hypersdk/rpc"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/cli"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/crypto/ed25519"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/auth"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/pubsub"
+	"github.com/hyperblaze-labs/hypersdk-spam/rpc"
 
-	trpc "github.com/ava-labs/hypersdk/examples/tokenvm/rpc"
-	hutils "github.com/ava-labs/hypersdk/utils"
+	trpc "github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/rpc"
+	hutils "github.com/hyperblaze-labs/hypersdk-spam/utils"
 )
 
 var _ cli.Controller = (*Controller)(nil)

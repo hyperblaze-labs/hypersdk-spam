@@ -19,13 +19,13 @@ import (
 	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/zap"
 
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/consts"
-	"github.com/ava-labs/hypersdk/fees"
-	"github.com/ava-labs/hypersdk/state"
-	"github.com/ava-labs/hypersdk/utils"
-	"github.com/ava-labs/hypersdk/window"
-	"github.com/ava-labs/hypersdk/workers"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/fees"
+	"github.com/hyperblaze-labs/hypersdk-spam/state"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/window"
+	"github.com/hyperblaze-labs/hypersdk-spam/workers"
 )
 
 var (

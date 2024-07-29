@@ -1,4 +1,4 @@
-module github.com/ava-labs/hypersdk
+module github.com/hyperblaze-labs/hypersdk-spam
 
 go 1.21
 

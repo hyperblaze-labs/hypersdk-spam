@@ -11,8 +11,8 @@ import (
 	"github.com/ava-labs/avalanchego/utils/timer"
 	"go.uber.org/zap"
 
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/consts"
 )
 
 type MessageBuffer struct {

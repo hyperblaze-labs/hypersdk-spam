@@ -11,12 +11,12 @@ import (
 	"github.com/ava-labs/avalanchego/trace"
 	"github.com/ava-labs/avalanchego/x/merkledb"
 
-	hconsts "github.com/ava-labs/hypersdk/consts"
-	"github.com/ava-labs/hypersdk/fees"
-	"github.com/ava-labs/hypersdk/state"
-	"github.com/ava-labs/hypersdk/vm"
+	hconsts "github.com/hyperblaze-labs/hypersdk-spam/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/fees"
+	"github.com/hyperblaze-labs/hypersdk-spam/state"
+	"github.com/hyperblaze-labs/hypersdk-spam/vm"
 
-	"github.com/ava-labs/hypersdk/x/programs/cmd/simulator/vm/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/x/programs/cmd/simulator/vm/consts"
 )
 
 var _ vm.Genesis = (*Genesis)(nil)

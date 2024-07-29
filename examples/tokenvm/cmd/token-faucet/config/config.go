@@ -4,10 +4,10 @@
 package config
 
 import (
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/crypto/ed25519"
-	"github.com/ava-labs/hypersdk/examples/tokenvm/auth"
-	"github.com/ava-labs/hypersdk/examples/tokenvm/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/crypto/ed25519"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/auth"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/consts"
 )
 
 type Config struct {

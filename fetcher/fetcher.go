@@ -12,8 +12,8 @@ import (
 	"github.com/ava-labs/avalanchego/database"
 	"github.com/ava-labs/avalanchego/ids"
 
-	"github.com/ava-labs/hypersdk/keys"
-	"github.com/ava-labs/hypersdk/state"
+	"github.com/hyperblaze-labs/hypersdk-spam/keys"
+	"github.com/hyperblaze-labs/hypersdk-spam/state"
 )
 
 // Fetcher retrieves values on-the-fly and ensures that

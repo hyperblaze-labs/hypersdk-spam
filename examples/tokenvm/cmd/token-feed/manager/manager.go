@@ -15,15 +15,15 @@ import (
 	"github.com/ava-labs/avalanchego/utils/timer"
 	"go.uber.org/zap"
 
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/examples/tokenvm/actions"
-	"github.com/ava-labs/hypersdk/examples/tokenvm/cmd/token-feed/config"
-	"github.com/ava-labs/hypersdk/examples/tokenvm/consts"
-	"github.com/ava-labs/hypersdk/pubsub"
-	"github.com/ava-labs/hypersdk/rpc"
-	"github.com/ava-labs/hypersdk/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/actions"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/cmd/token-feed/config"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/pubsub"
+	"github.com/hyperblaze-labs/hypersdk-spam/rpc"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
 
-	trpc "github.com/ava-labs/hypersdk/examples/tokenvm/rpc"
+	trpc "github.com/hyperblaze-labs/hypersdk-spam/examples/tokenvm/rpc"
 )
 
 type FeedContent struct {

@@ -13,12 +13,12 @@ import (
 	"github.com/ava-labs/avalanchego/utils/profiler"
 	"github.com/ava-labs/avalanchego/x/merkledb"
 
-	"github.com/ava-labs/hypersdk/builder"
-	"github.com/ava-labs/hypersdk/chain"
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/gossiper"
-	"github.com/ava-labs/hypersdk/state"
-	"github.com/ava-labs/hypersdk/trace"
+	"github.com/hyperblaze-labs/hypersdk-spam/builder"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/gossiper"
+	"github.com/hyperblaze-labs/hypersdk-spam/state"
+	"github.com/hyperblaze-labs/hypersdk-spam/trace"
 
 	avametrics "github.com/ava-labs/avalanchego/api/metrics"
 	avatrace "github.com/ava-labs/avalanchego/trace"

@@ -16,13 +16,13 @@ import (
 	"github.com/ava-labs/avalanchego/utils/units"
 	"gopkg.in/yaml.v2"
 
-	"github.com/ava-labs/hypersdk/chain"
-	"github.com/ava-labs/hypersdk/consts"
-	"github.com/ava-labs/hypersdk/fees"
-	"github.com/ava-labs/hypersdk/pubsub"
-	"github.com/ava-labs/hypersdk/rpc"
-	"github.com/ava-labs/hypersdk/utils"
-	"github.com/ava-labs/hypersdk/window"
+	"github.com/hyperblaze-labs/hypersdk-spam/chain"
+	"github.com/hyperblaze-labs/hypersdk-spam/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/fees"
+	"github.com/hyperblaze-labs/hypersdk-spam/pubsub"
+	"github.com/hyperblaze-labs/hypersdk-spam/rpc"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/window"
 )
 
 func (h *Handler) ImportChain() error {

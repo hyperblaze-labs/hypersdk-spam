@@ -21,11 +21,11 @@ import (
 	"github.com/ava-labs/avalanchego/ids"
 	"github.com/ava-labs/avalanchego/utils/logging"
 
-	"github.com/ava-labs/hypersdk/state"
-	"github.com/ava-labs/hypersdk/x/programs/cmd/simulator/vm/actions"
-	"github.com/ava-labs/hypersdk/x/programs/cmd/simulator/vm/storage"
-	"github.com/ava-labs/hypersdk/x/programs/cmd/simulator/vm/utils"
-	"github.com/ava-labs/hypersdk/x/programs/program"
+	"github.com/hyperblaze-labs/hypersdk-spam/state"
+	"github.com/hyperblaze-labs/hypersdk-spam/x/programs/cmd/simulator/vm/actions"
+	"github.com/hyperblaze-labs/hypersdk-spam/x/programs/cmd/simulator/vm/storage"
+	"github.com/hyperblaze-labs/hypersdk-spam/x/programs/cmd/simulator/vm/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/x/programs/program"
 )
 
 var _ Cmd = (*runCmd)(nil)

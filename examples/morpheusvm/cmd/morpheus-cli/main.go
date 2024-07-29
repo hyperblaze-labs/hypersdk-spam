@@ -7,8 +7,8 @@ package main
 import (
 	"os"
 
-	"github.com/ava-labs/hypersdk/examples/morpheusvm/cmd/morpheus-cli/cmd"
-	"github.com/ava-labs/hypersdk/utils"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/morpheusvm/cmd/morpheus-cli/cmd"
+	"github.com/hyperblaze-labs/hypersdk-spam/utils"
 )
 
 func main() {

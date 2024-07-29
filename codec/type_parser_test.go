@@ -9,7 +9,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/ava-labs/hypersdk/consts"
+	"github.com/hyperblaze-labs/hypersdk-spam/consts"
 )
 
 type Blah interface {

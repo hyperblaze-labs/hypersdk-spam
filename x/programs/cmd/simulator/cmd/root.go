@@ -25,11 +25,11 @@ import (
 	"github.com/ava-labs/avalanchego/utils/crypto/bls"
 	"github.com/ava-labs/avalanchego/utils/logging"
 
-	"github.com/ava-labs/hypersdk/state"
-	"github.com/ava-labs/hypersdk/vm"
+	"github.com/hyperblaze-labs/hypersdk-spam/state"
+	"github.com/hyperblaze-labs/hypersdk-spam/vm"
 
-	"github.com/ava-labs/hypersdk/x/programs/cmd/simulator/vm/controller"
-	"github.com/ava-labs/hypersdk/x/programs/cmd/simulator/vm/genesis"
+	"github.com/hyperblaze-labs/hypersdk-spam/x/programs/cmd/simulator/vm/controller"
+	"github.com/hyperblaze-labs/hypersdk-spam/x/programs/cmd/simulator/vm/genesis"
 )
 
 const (

@@ -10,10 +10,10 @@ import (
 	"github.com/ava-labs/avalanchego/trace"
 	"github.com/ava-labs/avalanchego/utils/logging"
 
-	"github.com/ava-labs/hypersdk/codec"
-	"github.com/ava-labs/hypersdk/examples/morpheusvm/genesis"
-	"github.com/ava-labs/hypersdk/examples/morpheusvm/storage"
-	"github.com/ava-labs/hypersdk/fees"
+	"github.com/hyperblaze-labs/hypersdk-spam/codec"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/morpheusvm/genesis"
+	"github.com/hyperblaze-labs/hypersdk-spam/examples/morpheusvm/storage"
+	"github.com/hyperblaze-labs/hypersdk-spam/fees"
 )
 
 func (c *Controller) Genesis() *genesis.Genesis {
